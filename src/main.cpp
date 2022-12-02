@@ -2,9 +2,8 @@
 
 #pragma mark - Depend ESP8266Audio and ESP8266_Spiram libraries
 /*
-cd ~/Arduino/libraries
-git clone https://github.com/earlephilhower/ESP8266Audio
-git clone https://github.com/Gianbacchio/ESP8266_Spiram
+Plays mp3 files from SPIFFS or SD (if SD, then toggle below between SPIFFS and SD)
+
 Use the "Tools->ESP32 Sketch Data Upload" menu to write the MP3 to SPIFFS
 Then upload the sketch normally.
 https://github.com/me-no-dev/arduino-esp32fs-plugin
@@ -12,17 +11,16 @@ https://github.com/me-no-dev/arduino-esp32fs-plugin
 
 #include <M5Core2.h>
 #include <driver/i2s.h>
-//#include <M5Stack.h>
 #include <WiFi.h>
 
 #include "AudioFileSourceID3.h"
-#include "AudioFileSourceSPIFFS.h"
+#include "AudioFileSourceSPIFFS.h" //OR: #include "AudioFileSourceSD.h"
 #include "AudioGeneratorMP3.h"
 #include "AudioOutputI2S.h"
 #include "SPIFFS.h"
 
 AudioGeneratorMP3 *mp3;
-AudioFileSourceSPIFFS *file;
+AudioFileSourceSPIFFS *file; //OR: AudioFileSourceSD *file;
 AudioOutputI2S *out;
 AudioFileSourceID3 *id3;
 
@@ -40,11 +38,10 @@ void setup() {
     M5.Lcd.printf("Sample MP3 playback begins...\n");
     Serial.printf("Sample MP3 playback begins...\n");
 
-    // pno_cs from https://ccrma.stanford.edu/~jos/pasp/Sound_Examples.html
-    file = new AudioFileSourceSPIFFS("/pno-cs.mp3");
+    file = new AudioFileSourceSPIFFS("/pno-cs.mp3"); //OR: file = new AudioFileSourceSD("/mp3/chikichiki.mp3");
     id3  = new AudioFileSourceID3(file);
     out  = new AudioOutputI2S(0, 0);  // Output to builtInDAC
-     out->SetPinout(12, 0, 2);
+    out->SetPinout(12, 0, 2);
     out->SetOutputModeMono(true);
     out->SetGain((float)OUTPUT_GAIN/100.0);
     mp3 = new AudioGeneratorMP3();
