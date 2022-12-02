@@ -10,7 +10,9 @@ Then upload the sketch normally.
 https://github.com/me-no-dev/arduino-esp32fs-plugin
 */
 
-#include <M5Stack.h>
+#include <M5Core2.h>
+#include <driver/i2s.h>
+//#include <M5Stack.h>
 #include <WiFi.h>
 
 #include "AudioFileSourceID3.h"
@@ -24,9 +26,12 @@ AudioFileSourceSPIFFS *file;
 AudioOutputI2S *out;
 AudioFileSourceID3 *id3;
 
+#define OUTPUT_GAIN 30
+
 void setup() {
-    M5.begin();
-    M5.Power.begin();
+    M5.begin();  // Comment out: "Spk.begin();" in M5Core2.cpp !!! 
+    M5.Axp.SetSpkEnable(true);
+    //M5.Power.begin();
     WiFi.mode(WIFI_OFF);
     SPIFFS.begin();
     delay(500);
@@ -38,8 +43,10 @@ void setup() {
     // pno_cs from https://ccrma.stanford.edu/~jos/pasp/Sound_Examples.html
     file = new AudioFileSourceSPIFFS("/pno-cs.mp3");
     id3  = new AudioFileSourceID3(file);
-    out  = new AudioOutputI2S(0, 1);  // Output to builtInDAC
+    out  = new AudioOutputI2S(0, 0);  // Output to builtInDAC
+     out->SetPinout(12, 0, 2);
     out->SetOutputModeMono(true);
+    out->SetGain((float)OUTPUT_GAIN/100.0);
     mp3 = new AudioGeneratorMP3();
     mp3->begin(id3, out);
 }

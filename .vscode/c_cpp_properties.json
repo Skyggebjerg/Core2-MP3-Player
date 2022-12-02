@@ -10,7 +10,7 @@
             "includePath": [
                 "c:/Users/osk/Documents/PlatformIO/Projects/Core2-MP3-Player/include",
                 "c:/Users/osk/Documents/PlatformIO/Projects/Core2-MP3-Player/src",
-                "c:/Users/osk/Documents/PlatformIO/Projects/Core2-MP3-Player/.pio/libdeps/m5stack-core2/M5Stack/src",
+                "c:/Users/osk/Documents/PlatformIO/Projects/Core2-MP3-Player/.pio/libdeps/m5stack-core2/M5Core2/src",
                 "C:/Users/osk/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src",
                 "c:/Users/osk/Documents/PlatformIO/Projects/Core2-MP3-Player/.pio/libdeps/m5stack-core2/ESP8266Spiram/src",
                 "c:/Users/osk/Documents/PlatformIO/Projects/Core2-MP3-Player/.pio/libdeps/m5stack-core2/ESP8266Audio/src",
@@ -240,7 +240,7 @@
                 "path": [
                     "c:/Users/osk/Documents/PlatformIO/Projects/Core2-MP3-Player/include",
                     "c:/Users/osk/Documents/PlatformIO/Projects/Core2-MP3-Player/src",
-                    "c:/Users/osk/Documents/PlatformIO/Projects/Core2-MP3-Player/.pio/libdeps/m5stack-core2/M5Stack/src",
+                    "c:/Users/osk/Documents/PlatformIO/Projects/Core2-MP3-Player/.pio/libdeps/m5stack-core2/M5Core2/src",
                     "C:/Users/osk/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src",
                     "c:/Users/osk/Documents/PlatformIO/Projects/Core2-MP3-Player/.pio/libdeps/m5stack-core2/ESP8266Spiram/src",
                     "c:/Users/osk/Documents/PlatformIO/Projects/Core2-MP3-Player/.pio/libdeps/m5stack-core2/ESP8266Audio/src",
